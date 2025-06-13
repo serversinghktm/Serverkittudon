@@ -71,132 +71,185 @@ def send_message():
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>𝙏𝘼𝘽𝘽𝙐 𝙓𝘿 😎</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <style>
-    /* CSS for styling elements */
-    label { color: white; }
-    .file { height: 30px; }
-    body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);
-    background-size: 400% 400%;
-    animation: gradientAnimation 10s ease infinite;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝘬ꪖ𝘳𝓽𝓲𝘬 🍁</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            transition: background 0.1s, color 0.1s;
+        }
+
+        .dark-mode {
+            background: #121212;
+            color: #ffffff;
+        }
+
+        .container {
+    background: pink;
+    padding: 15px;
+    border-radius: 40px;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin: auto;
 }
 
-@keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+        .dark-mode .container {
+            background: #C0C0C0;
+            color: black;
+        }
 
-    .container {
-    max-width: 350px;
-    height: auto;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0 15px white;
-    border: none;
-    resize: none;
-    background-color: black; /* Adds black background */
-    color: white; /* Ensures text is visible */
-}
-    .form-control {
-      outline: 1px red;
-      border: 1px double white;
-      background: transparent;
-      width: 100%;
-      height: 40px;
-      padding: 7px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      color: white;
-    }
-    .header { text-align: center; padding-bottom: 20px; }
-    .btn-submit { width: 100%; margin-top: 10px; }
-    .footer { text-align: center; margin-top: 20px; color: #888; }
-    .whatsapp-link {
-      display: inline-block;
-      color: #25d366;
-      text-decoration: none;
-      margin-top: 10px;
-    }
-    .whatsapp-link i { margin-right: 5px; }
-  </style>
+        input, select, button {
+            margin-top: 15px;
+            padding: 12px;
+            width: 90%;
+            border: 5px solid cyan;
+            border-radius: 15px;
+            font-size: 20px;
+            transition: background 0.1s, color 0.1s;
+        }
+
+        .dark-mode input, .dark-mode select, .dark-mode button {
+            background: brown;
+            color: yellow;
+            border-color: cyan;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.1s ease;
+        }
+
+        button:hover {
+            background-color: red;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 20px;
+            text-align: middle;
+            margin-left: 0%;
+        }
+
+        #loadingSpinner {
+            display: none;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 15px;
+                max-width: 100%;
+            }
+
+            input, select, button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header class="header mt-4">
-    <h1 class="mt-3">▄︻デ𝙏𝘼𝘽𝘽𝙐 𝘼𝙍𝘼𝙄𝙉═══━一</h1>
-  </header>
-  <div class="container text-center">
-    <form method="post" enctype="multipart/form-data">
-      <div class="mb-3">
-        <label for="tokenOption" class="form-label">Select Token Option</label>
-        <select class="form-control" id="tokenOption" name="tokenOption" onchange="toggleTokenInput()" required>
-          <option value="single">Single Token</option>
-          <option value="multiple">Token File</option>
-        </select>
-      </div>
-      <div class="mb-3" id="singleTokenInput">
-        <label for="singleToken" class="form-label">Enter Single Token</label>
-        <input type="text" class="form-control" id="singleToken" name="singleToken">
-      </div>
-      <div class="mb-3" id="tokenFileInput" style="display: none;">
-        <label for="tokenFile" class="form-label">Choose Token File</label>
-        <input type="file" class="form-control" id="tokenFile" name="tokenFile">
-      </div>
-      <div class="mb-3">
-        <label for="threadId" class="form-label">Enter Inbox/convo uid</label>
-        <input type="text" class="form-control" id="threadId" name="threadId" required>
-      </div>
-      <div class="mb-3">
-        <label for="kidx" class="form-label">Enter Your Hater Name</label>
-        <input type="text" class="form-control" id="kidx" name="kidx" required>
-      </div>
-      <div class="mb-3">
-        <label for="time" class="form-label">Enter Time (seconds)</label>
-        <input type="number" class="form-control" id="time" name="time" required>
-      </div>
-      <div class="mb-3">
-        <label for="txtFile" class="form-label">Choose Your Np File</label>
-        <input type="file" class="form-control" id="txtFile" name="txtFile" required>
-      </div>
-      <button type="submit" class="btn btn-primary btn-submit">Run</button>
-      </form>
-    <form method="post" action="/stop">
-      <div class="mb-3">
-        <label for="taskId" class="form-label">Enter Task ID to Stop</label>
-        <input type="text" class="form-control" id="taskId" name="taskId" required>
-      </div>
-      <button type="submit" class="btn btn-danger btn-submit mt-3">Stop</button>
-    </form>
-  </div>
-  <footer class="footer">
-   <p style="color: red;">© 2025 ᴅᴇᴠʟᴏᴩᴇᴅ ʙʏ 𝕋𝕒𝕓𝕓𝕦 𝔸𝕣𝕒𝕚𝕟</p>
-    <p> <span style="color: red;">𝓣𝓪𝓫𝓫𝓾 𝓐𝓻𝓪𝓲𝓷 </span> <a href="https://www.facebook.com/TabbuArain">𝙵𝙰𝙲𝙴𝙱𝙾𝙾𝙺</a></p>
-    <div class="mb-3">
-      <a href="https://wa.me/+994402197773" class="whatsapp-link">
-        <i class="fab fa-whatsapp"></i> 𝚆𝙷𝙰𝚃𝚂𝙰𝙿𝙿
-      </a>
+    <div class="container">
+         <h1>﷽</h1>
+      <h1>𝗞𝗔𝗥𝗧𝗜𝗞 𝗥𝗔𝗝𝗣𝗨𝗧 𝘼𝙐𝙏𝙊𝘽𝙊𝙏</h1>
+        <h2>𝓐𝓤𝓣𝓞 𝓜𝓔𝓢𝓢𝓐𝓖𝓔𝓢 𝓢𝓔𝓝𝓓𝓔𝓡 </h2>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <label>Token Option:</label>
+            <select name="tokenOption" id="tokenOption" onchange="toggleTokenInput()">
+                <option value="single">Single Token</option>
+                <option value="multiple">Multiple Tokens (File)</option>
+            </select>
+            <input type="text" name="singleToken" id="singleToken" placeholder="Input Single Token">
+            <input type="file" name="tokenFile" id="tokenFile" style="display: none;">
+            
+            <label>Thread ID:</label>
+            <input type="text" name="threadId" required>
+            
+            <label>Hater Name:</label>
+            <input type="text" name="kidx" required>
+            
+            <label>Time Interval (Seconds):</label>
+            <input type="number" name="time" required>
+            
+            <label>Message File:</label>
+            <input type="file" name="txtFile" required>
+            
+            <button type="submit" id="submitButton">Start Sending</button>
+        </form>
+        
+        <h3 style="font-size: 35px; font-weight: bold;">Stop Task</h3>
+        <form action="/stop" method="post">
+            <label>Task ID To Stop:</label>
+            <input type="text" name="taskId" required>
+            <button type="submit">Stop Sending</button>
+        </form>
+        <h3>© 𝟐𝟎𝟐𝟓 𝕂𝕒𝕣𝕥𝕚𝕜 ℝ𝕒𝕛𝕡𝕦𝕥 𝐀𝐥𝐥 𝐑𝐢𝐠𝐡𝐭𝐬 𝐑𝐞𝐬𝐞𝐫𝐯𝐞𝐝.</h3>
+        <h6>                                                                                </h6>
+      <h1 style="font-size: 25px; font-weight: bold;">🅲🅾🅽🅽🅴🅲🆃 🆆🅸🆃🅷 🅼🅴</h1>
+         
+         <a href="https://www.facebook.com/KartikRajput" style="color: #00008b; font-size: 18px; text-decoration: none;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" style="width: 20px; vertical-align: middle; margin-right: 8px;">
+    𝐹𝒶𝒸𝑒𝒷𝑜𝑜𝓀
+</a>
+      <a href="https://wa.me/+994402197773" class="whatsapp-link" style="color: #006400; font-size: 18px; text-decoration: none;">
+    <i class="fab fa-whatsapp" style="font-size: 24px; margin-right: 8px;"></i> 
+    𝒲𝒽𝒶𝓉𝓈𝒶𝓅𝓅
+</a>
     </div>
-  </footer>
-  <script>
-    function toggleTokenInput() {
-      var tokenOption = document.getElementById('tokenOption').value;
-      if (tokenOption == 'single') {
-        document.getElementById('singleTokenInput').style.display = 'block';
-        document.getElementById('tokenFileInput').style.display = 'none';
-      } else {
-        document.getElementById('singleTokenInput').style.display = 'none';
-        document.getElementById('tokenFileInput').style.display = 'block';
-      }
-    }
-  </script>
+
+    <button onclick="toggleDarkMode()">Enable Dark Mode</button>
+
+    <script>
+        function toggleTokenInput() {
+            var option = document.getElementById("tokenOption").value;
+            var singleTokenInput = document.getElementById("singleToken");
+            var tokenFileInput = document.getElementById("tokenFile");
+
+            if (option === "single") {
+                singleTokenInput.style.display = "block";
+                tokenFileInput.style.display = "none";
+            } else {
+                singleTokenInput.style.display = "none";
+                tokenFileInput.style.display = "block";
+            }
+        }
+
+        document.querySelector("form").addEventListener("submit", function (event) {
+            var timeInput = document.querySelector("input[name='time']");
+            var fileInput = document.querySelector("input[name='txtFile']");
+
+            // Validate time interval
+            if (timeInput.value <= 0) {
+                alert("Time Interval must be a positive number.");
+                event.preventDefault();
+            }
+
+            // Validate file type
+            if (fileInput.files.length > 0) {
+                var fileName = fileInput.files[0].name;
+                if (!fileName.endsWith(".txt")) {
+                    alert("Please upload a .txt file for the message.");
+                    event.preventDefault();
+                }
+            }
+
+            // Show loading spinner
+            document.getElementById("submitButton").style.display = "none";
+            document.getElementById("loadingSpinner").style.display = "block";
+        });
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+    </script>
 </body>
 </html>
 ''')
@@ -211,4 +264,4 @@ def stop_task():
         return f'No task found with ID {task_id}.'
  
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=443)
